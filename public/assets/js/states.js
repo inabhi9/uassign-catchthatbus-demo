@@ -142,7 +142,7 @@
                 }
             })
             .state('seller.product-list', {
-                url: '/seller/products/list?page&q',
+                url: '/products/list?page&q',
                 views: {
                     "": {
                         templateUrl: 'views/seller/products.html',
@@ -162,7 +162,7 @@
                 }
             })
             .state('seller.product-create', {
-                url: '/seller/products/create',
+                url: '/products/create',
                 views: {
                     "": {
                         templateUrl: 'views/seller/form.product.html',
@@ -183,7 +183,7 @@
                 }
             })
             .state('seller.product-update', {
-                url: '/seller/products/:id/update',
+                url: '/products/:id/update',
                 views: {
                     "": {
                         templateUrl: 'views/seller/form.product.html',

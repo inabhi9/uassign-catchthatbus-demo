@@ -32,7 +32,31 @@
                         newState = 'product'
                     }
                     $state.go(newState, {q: this.term});
-                }
+                };
+
+                // Auth redirection
+                $rootScope.$on("$stateChangeStart", function (e, toState) {
+
+                    // Redirect seller to seller page
+                    if (UserService.isLoggedIn()) {
+                        if (UserService.get().kind == 'seller' &&
+                            toState.name.indexOf('seller') < 0 && toState.name != 'logout') {
+                            e.preventDefault();
+                            $state.go('seller.product-list');
+                        } else if (UserService.get().kind == 'buyer' &&
+                            toState.name.indexOf('seller') >= 0) {
+                            e.preventDefault();
+                            $state.go('home');
+                        }
+
+                    }
+
+                    // Redirect user to dashboard If user is logged and tries to load login
+                    if (UserService.isLoggedIn() && toState.name === "login") {
+                        e.preventDefault();
+                        $state.go('home');
+                    }
+                });
             }])
 
 })();

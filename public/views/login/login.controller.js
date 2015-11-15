@@ -18,11 +18,10 @@ function fn($scope, $state, AuthService, UserService, $rootScope) {
             UserService.login(resp.data);
             $state.go('home');
 
-            //$rootScope.$watch()
         }, function (error) {
             console.log(error, 'err');
         });
-    }
+    };
 
     $scope.signup = function () {
         console.log($scope.mdl.signup);
