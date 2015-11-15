@@ -21,7 +21,7 @@ module.exports = function (app, passport, prefix) {
     app.get(prefix + '/products', function (req, res) {
         var fq = {};
         if (req.query.q) fq['$text'] = {$search: req.query.q};
-        if (req.query.categoryPath) fq['categoryPath'] = {'$regex': req.query.categoryPath};
+        if (req.query.categoryPath) fq['categoryPath'] = {'$regex': "^"+req.query.categoryPath.replace('|', '\\|')};
         if (req.query.is_featured == 'true') fq['is_featured'] = true;
         if (req.query.is_active == 'true') fq['is_active'] = true;
 
