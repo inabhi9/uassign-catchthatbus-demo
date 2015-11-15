@@ -1,0 +1,76 @@
+<section><!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="title text-center">{{isNew==true ? 'Add':'Update'}} Product</h2>
+
+                <form class="form" ng-submit="isNew==true ? mdl.create():mdl.update()">
+                    <div class="form-group">
+                        <label>Product Name *</label>
+                        <input type="text" class="form-control" ng-model="mdl.product.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description *</label>
+                            <textarea class="form-control" ng-model="mdl.product.description"
+                                      required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>SKU *</label>
+                        <input type="text" class="form-control" required
+                               ng-model="mdl.product.sku">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity *</label>
+                        <input type="number" class="form-control" required
+                               ng-model="mdl.product.qty">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Price *</label>
+                        <input type="number" min="0" max="9999" step="any" size="4"
+                               class="form-control" ng-model="mdl.product.price" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" size="4" class="form-control"
+                               ng-model="mdl.product.brand">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select ng-model="mdl.product.categoryPath" class="form-control"
+                                ng-options="cat.path as cat.name for cat in mdl.categories"
+                                required>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Is Active</label>
+                            <input type="checkbox"
+                                   ng-model="mdl.product.is_active">
+                        </div>
+                        <div class="col-md-4">
+                            <label>Featured</label>
+                            <input type="checkbox" ng-model="mdl.product.is_featured">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Image</label>
+                            <input type="file" ng-model="mdl.product.image" name="image"
+                                   ngf-pattern="'image/*'" ngf-select="">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        {{isNew==true ? 'Create': 'Update'}}
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</section>

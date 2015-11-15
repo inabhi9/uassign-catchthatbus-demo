@@ -21,8 +21,9 @@ module.exports = function (app, passport, prefix) {
     app.get(prefix + '/products', function (req, res) {
         var fq = {};
         if (req.query.q) fq['$text'] = {$search: req.query.q};
-        if (req.query.categoryPath) fq['categoryPath'] = req.query.categoryPath;
+        if (req.query.categoryPath) fq['categoryPath'] = {'$regex': req.query.categoryPath};
         if (req.query.is_featured == 'true') fq['is_featured'] = true;
+        if (req.query.is_active == 'true') fq['is_active'] = true;
 
         Product.paginate(fq, req.query, function (err, data, pageCount, itemCount) {
             if (data) {
@@ -66,4 +67,12 @@ module.exports = function (app, passport, prefix) {
             return Helper.response(res, null, err, 204);
         })
     });
+
+    app.get(prefix + '/products/:id', function (req, res) {
+        var id = req.params.id;
+
+        Product.findById(id, function (err, product) {
+            return Helper.response(res, product, err, 200);
+        })
+    })
 };

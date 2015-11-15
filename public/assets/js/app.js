@@ -9,6 +9,7 @@
             'ui.bootstrap',
             'ui.bootstrap',
             'angular-growl',
+            'ngFileUpload',
         ])
         .run(["$rootScope", function ($rootScope) {
             $rootScope.dateFormat = 'dd-MMMM-yyyy';

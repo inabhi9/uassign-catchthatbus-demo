@@ -38,7 +38,7 @@
             {{product.qty}}
         </td>
         <td>
-            <a><i class="fa fa-edit"></i></a>
+            <a ui-sref="seller.product-update({id: product._id})"><i class="fa fa-edit"></i></a>
             <a confirm-click="Are you sure you want to delete?"
                ng-click="mdl.delete(product._id)"><i class="fa fa-trash"></i></a>
         </td>

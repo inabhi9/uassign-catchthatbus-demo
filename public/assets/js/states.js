@@ -152,11 +152,53 @@
                                 return $ocLazyLoad.load({
                                     files: [
                                         'views/product/product.service.js',
-                                        'views/seller/product.seller.controller.js'
+                                        'views/seller/product.seller.controller.js',
+                                        'views/filter/filter.service.js'
                                     ]
                                 });
                             }]
                         }
+                    }
+                }
+            })
+            .state('seller.product-create', {
+                url: '/seller/products/create',
+                views: {
+                    "": {
+                        templateUrl: 'views/seller/form.product.html',
+                        controller: 'Seller.ProductCtrl as ctrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load({
+                                    files: [
+                                        'views/product/product.service.js',
+                                        'views/seller/product.seller.controller.js',
+                                        'views/filter/filter.service.js'
+                                    ]
+                                });
+                            }]
+                        }
+
+                    }
+                }
+            })
+            .state('seller.product-update', {
+                url: '/seller/products/:id/update',
+                views: {
+                    "": {
+                        templateUrl: 'views/seller/form.product.html',
+                        controller: 'Seller.ProductCtrl as ctrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load({
+                                    files: [
+                                        'views/product/product.service.js',
+                                        'views/seller/product.seller.controller.js',
+                                        'views/filter/filter.service.js'
+                                    ]
+                                });
+                            }]
+                        },
                     }
                 }
             })
