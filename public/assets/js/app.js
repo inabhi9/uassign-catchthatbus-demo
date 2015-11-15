@@ -10,6 +10,7 @@
             'ui.bootstrap',
             'angular-growl',
             'ngFileUpload',
+            'angular-loading-bar',
         ])
         .run(["$rootScope", function ($rootScope) {
             $rootScope.dateFormat = 'dd-MMMM-yyyy';
@@ -65,11 +66,9 @@
                 return {
                     responseError: function (rejection) {
                         try {
-                            console.log(rejection);
                             // Display validation error message
                             if (rejection.data.name == "ValidationError") {
                                 for (var err in rejection.data.errors) {
-                                    console.log(err);
                                     var e = rejection.data.errors[err];
                                     growl.error(e.message.replace('Path ', ''), {title: e.name});
                                 }
