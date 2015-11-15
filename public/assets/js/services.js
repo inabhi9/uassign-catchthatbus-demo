@@ -31,15 +31,16 @@ angular.module('GrabKartApp')
     }).service('CartService', function ($window) {
         var self = this;
 
-        this.addItem = function (id, item) {
+        this.addItem = function (id, item, qty) {
             var cart = self.getCart();
             if (!cart) cart = {};
+            if (typeof qty == 'undefined') qty = 1;
             if (typeof cart[id] != 'undefined') {
                 cart = self.getCart();
-                cart[id]['qty']++;
+                cart[id]['qty'] += qty;
             }
             else {
-                cart[id] = {item: item, qty: 1};
+                cart[id] = {item: item, qty: qty};
             }
             self._setCart(cart);
             return true;

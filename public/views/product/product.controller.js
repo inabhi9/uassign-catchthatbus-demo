@@ -7,6 +7,7 @@ angular.module('GrabKartApp').controller('ProductCtrl',
 /** @ngInject */
 function fn($scope, $state, ProductService, growl, $rootScope, CartService) {
     $scope.mdl = {};
+    $scope.cartQty = 1;
     //CartService.clear();
     console.log('itesm', CartService.getTotalCount());
     console.log('cart', CartService.getCart());
@@ -15,9 +16,16 @@ function fn($scope, $state, ProductService, growl, $rootScope, CartService) {
         $scope.mdl.meta = resp.data.meta
     });
 
+    if ($state.params.id) {
+        var id = $state.params.id;
+        ProductService.get(id).then(function (resp) {
+            $scope.mdl.product = resp.data
+        });
+    }
+
     angular.extend($scope.mdl, {
-        addToCart: function (id, item) {
-            CartService.addItem(id, item);
+        addToCart: function (id, item, qty) {
+            CartService.addItem(id, item, qty);
             growl.success('Added to cart');
         }
     })

@@ -79,6 +79,30 @@
                     }
                 }
             })
+            .state('product.detail', {
+                url: '/:id',
+                views: {
+                    "@": {
+                        templateUrl: 'views/product/detail.product.html',
+                        controller: 'ProductCtrl'
+                    },
+                    "category@product.detail": {
+                        templateUrl: 'views/filter/filter.html',
+                        controller: 'FilterCtrl as ctrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load({
+                                    files: [
+                                        'views/filter/filter.service.js',
+                                        'views/filter/filter.controller.js'
+                                    ]
+                                });
+                            }]
+                        }
+                    }
+                }
+            })
+
             .state('cart', {
                 url: '/cart',
                 views: {
