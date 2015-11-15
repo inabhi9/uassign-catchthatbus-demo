@@ -9,7 +9,7 @@ angular.module('GrabKartApp').controller('LoginCtrl', ['$scope', '$state', 'Auth
 function fn($scope, $state, AuthService, UserService, $rootScope) {
     $scope.kinds = [{key: 'buyer', value: 'Buyer'}, {key: 'seller', value: 'Seller'}];
     $scope.mdl = {
-        login: {username: 'in.abhi9@gmail.com', password: '123', kind: 'buyer'},
+        login: {username: 'buyer@test.com', password: '123', kind: 'buyer'},
         signup: {}
     };
 
