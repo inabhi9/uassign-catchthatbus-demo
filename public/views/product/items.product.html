@@ -41,4 +41,15 @@
     </div>
 
 </div>
+<div class="dataTables_paginate paging_bootstrap_full_number" ng-if="mdl.meta.pageCount>1">
+    <pagination total-items="mdl.meta.itemCount"
+                ng-model="mdl.page.currentPage"
+                max-size="8" class="pagination-sm" boundary-links="true"
+                rotate="false" ng-change="mdl.page.changed()"
+                items-per-page="mdl.page.pageSize"></pagination>
+</div>
+
+<div>
+    <h3 ng-if="mdl.meta.itemCount==0">No items found</h3>
+</div>
 <!--items-->

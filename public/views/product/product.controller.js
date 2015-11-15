@@ -13,7 +13,8 @@ function fn($scope, $state, ProductService, growl, $rootScope, CartService) {
     console.log('cart', CartService.getCart());
     ProductService.findFromActive($state.params).then(function (resp) {
         $scope.mdl.products = resp.data.items;
-        $scope.mdl.meta = resp.data.meta
+        $scope.mdl.meta = resp.data.meta;
+        $scope.mdl.page.currentPage = $state.params.page;
     });
 
     if ($state.params.id) {
@@ -27,6 +28,14 @@ function fn($scope, $state, ProductService, growl, $rootScope, CartService) {
         addToCart: function (id, item, qty) {
             CartService.addItem(id, item, qty);
             growl.success('Added to cart');
+        },
+        page: {
+            pageSize: 10,
+            changed: function () {
+                $state.go('.', {page: $scope.mdl.page.currentPage})
+            }
         }
     })
+
+
 }

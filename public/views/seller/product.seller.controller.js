@@ -57,7 +57,7 @@ function fn($scope, $state, ProductService, growl, $rootScope, $location, Catego
                 $state.go('.', {page: $scope.mdl.page.currentPage})
             }
         }
-    })
+    });
 
     loadProducts();
 }
