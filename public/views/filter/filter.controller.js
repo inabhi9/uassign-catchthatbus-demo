@@ -10,5 +10,7 @@ function fn($scope, $state, CategoryService) {
 
     CategoryService.all().then(function (resp) {
         $this.categories = resp.data;
+        console.log($this.categories);
+        $this.categories.push({name: 'ALL', path: 'root'})
     });
 };
