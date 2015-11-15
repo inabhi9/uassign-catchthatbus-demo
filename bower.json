@@ -1,0 +1,21 @@
+{
+  "name": "angular",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "font-awesome": "~4.4.0",
+    "animate.css": "~3.4.0",
+    "prettyphoto": "*",
+    "scrollup": "~2.4.1",
+    "bootstrap-slider": "*",
+    "html5shiv": "~3.7.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-sanitize": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-bootstrap": "~0.14.3",
+    "oclazyload": "~1.0.8",
+    "angular-growl-v2": "~0.7.9"
+  }
+}

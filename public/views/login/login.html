@@ -1,0 +1,47 @@
+<section id="form"><!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form"><!--login form-->
+                    <h2>Login to your account</h2>
+
+                    <form action="#" ng-submit="login()">
+                        <select ng-model="mdl.login.kind"
+                                ng-options="opt.key as opt.value for opt in kinds"
+                                style="margin-bottom: 5px">
+                        </select>
+                        <input type="email" placeholder="Email Address"
+                               ng-model="mdl.login.username">
+                        <input type="password" ng-model="mdl.login.password">
+							<span>
+								<input type="checkbox" class="checkbox"> 
+								Keep me signed in
+							</span>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+                </div>
+                <!--/login form-->
+            </div>
+            <div class="col-sm-1">
+                <h2 class="or">OR</h2>
+            </div>
+            <div class="col-sm-4">
+                <div class="signup-form"><!--sign up form-->
+                    <h2>New User Signup!</h2>
+
+                    <form action="#" ng-submit="signup()">
+                        <select ng-model="mdl.signup.kind"
+                                ng-options="opt.key as opt.value for opt in kinds"
+                                style="margin-bottom: 5px">
+                        </select>
+                        <input type="text" placeholder="Name" ng-model="mdl.signup.fullname">
+                        <input type="email" placeholder="Email Address" ng-model="mdl.signup.email">
+                        <input type="password" ng-model="mdl.signup.password">
+                        <button type="submit" class="btn btn-default">Signup</button>
+                    </form>
+                </div>
+                <!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section>
