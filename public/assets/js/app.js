@@ -25,7 +25,12 @@
                 $rootScope.cart = CartService;
                 $scope.term = $location.search().q;
                 $scope.search = function () {
-                    $state.go('product', {q: this.term});
+                    var newState = '.';
+
+                    if ($state.current.name !== 'seller.product-list') {
+                        newState = 'product'
+                    }
+                    $state.go(newState, {q: this.term});
                 }
             }])
 

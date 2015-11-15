@@ -123,6 +123,44 @@
                     $state.go('home');
                 }]
             })
+            .state('seller', {
+                url: '/seller',
+                views: {
+                    "@": {
+                        templateUrl: 'views/seller/seller.html',
+                        controller: 'SellerCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load({
+                                    files: [
+                                        'views/seller/seller.controller.js'
+                                    ]
+                                });
+                            }]
+                        }
+                    }
+                }
+            })
+            .state('seller.product-list', {
+                url: '/seller/products/list?page&q',
+                views: {
+                    "": {
+                        templateUrl: 'views/seller/products.html',
+                        controller: 'Seller.ProductCtrl as ctrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load({
+                                    files: [
+                                        'views/product/product.service.js',
+                                        'views/seller/product.seller.controller.js'
+                                    ]
+                                });
+                            }]
+                        }
+                    }
+                }
+            })
+
     }
 
 })();

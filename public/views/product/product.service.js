@@ -10,8 +10,8 @@ function fn(API, $http) {
         find: function (query) {
             return $http.get(API.baseURL + "/products", {params: query});
         },
-        addToCart: function (id) {
-            return $http.post(API.baseURL + "/cart", {product_id: id});
+        delete: function (id) {
+            return $http.delete(API.baseURL + "/products/" + id);
         }
     }
 };

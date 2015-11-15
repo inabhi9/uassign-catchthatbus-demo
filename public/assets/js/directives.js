@@ -3,7 +3,8 @@
 
     angular
         .module('GrabKartApp')
-        .directive('myEnter', myEnter);
+        .directive('myEnter', myEnter)
+        .directive('confirmClick', confirmClick);
 })();
 
 function myEnter() {
@@ -19,3 +20,22 @@ function myEnter() {
         });
     };
 };
+
+function confirmClick() {
+
+    function link($scope, element, attrs) {
+        element.bind('click', function (e) {
+            if (!confirm(attrs.confirmClick)) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            }
+        });
+    }
+
+    return {
+        priority: -1,
+        restrict: 'A',
+        link: link
+    }
+}
+;

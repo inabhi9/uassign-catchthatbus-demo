@@ -33,6 +33,14 @@ var helper = {
     },
     isValidPassword: function (user, password) {
         return helper.encryptPassword(password) == user.password;
+    },
+    Auth: {
+        isSeller: function (req, res, next) {
+            if (req.isAuthenticated() && req.user.kind == 'seller')
+                return next();
+
+            return res.status(401).json();
+        }
     }
 };
 
