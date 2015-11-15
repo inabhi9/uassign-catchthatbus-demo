@@ -34,7 +34,7 @@ module.exports = function (app, passport, prefix) {
         })
     });
 
-    app.post(prefix + '/products', upload.single('image'), function (req, res) {
+    app.post(prefix + '/products', Helper.Auth.isSeller, upload.single('image'), function (req, res) {
         var product = new Product(req.body);
         console.log(req.file);
         if (req.file) {
@@ -47,20 +47,21 @@ module.exports = function (app, passport, prefix) {
         })
     });
 
-    app.put(prefix + '/products/:id', upload.single('image'), function (req, res) {
-        var id = req.params.id;
+    app.put(prefix + '/products/:id', Helper.Auth.isSeller, upload.single('image'),
+        function (req, res) {
+            var id = req.params.id;
 
-        if (req.file) {
-            var base = req.protocol + '://' + req.get('host');
-            req.body.images = [{url: base + '/assets/images/product-details/' + req.file.filename}]
-        }
+            if (req.file) {
+                var base = req.protocol + '://' + req.get('host');
+                req.body.images = [{url: base + '/assets/images/product-details/' + req.file.filename}]
+            }
 
-        Product.findByIdAndUpdate(id, {$set: req.body}, function (err, product) {
-            return Helper.response(res, product, err, 200);
-        })
-    });
+            Product.findByIdAndUpdate(id, {$set: req.body}, function (err, product) {
+                return Helper.response(res, product, err, 200);
+            })
+        });
 
-    app.delete(prefix + '/products/:id', function (req, res) {
+    app.delete(prefix + '/products/:id', Helper.Auth.isSeller, Helper.Auth.isSeller, function (req, res) {
         var id = req.params.id;
 
         Product.findByIdAndRemove(id, function (err, product) {
