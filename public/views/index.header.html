@@ -63,12 +63,15 @@
                         <ul class="nav navbar-nav">
                             <!--<li ng-if="user.isLoggedIn()"><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li ng-if="user.isLoggedIn()"><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>-->
-
+                            <li ng-if="user.isLoggedIn()">
+                                <a>Howdy, {{user.get().fullname}}</a>
+                            </li>
                             <li ng-if="user.isLoggedIn()"><a ui-sref="cart"><i
                                     class="fa fa-shopping-cart"></i> Cart ({{cart.getTotalCount()}})</a>
                             </li>
                             <li ng-if="!user.isLoggedIn()">
                                 <a ui-sref="login"><i class="fa fa-lock"></i>Login</a></li>
+
                             <li ng-if="user.isLoggedIn()"><a ui-sref="logout">
                                 <i class="fa fa-lock"></i>Logout</a>
                             </li>
