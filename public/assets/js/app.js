@@ -14,10 +14,12 @@
         .run(["$rootScope", function ($rootScope) {
             $rootScope.dateFormat = 'dd-MMMM-yyyy';
         }])
-        .config(['growlProvider', function (growlProvider) {
+        .config(['growlProvider', '$httpProvider', function (growlProvider, $httpProvider) {
             growlProvider.onlyUniqueMessages(false);
             growlProvider.globalReversedOrder(true);
-            growlProvider.globalTimeToLive({success: 1000, error: 2000, warning: 3000, info: 4000});
+            growlProvider.globalTimeToLive({success: 5000, error: 5000, warning: 3000, info: 4000});
+
+            $httpProvider.interceptors.push('errorInterceptor');
         }])
         .controller('AppController', ['$scope', '$rootScope', '$state', '$location', 'UserService',
             'CartService',
@@ -58,5 +60,35 @@
                     }
                 });
             }])
+        .factory('errorInterceptor', ['$window', '$q', 'growl', '$log', 'UserService', '$location',
+            function ($window, $q, growl, $log, UserService, $location) {
+                return {
+                    responseError: function (rejection) {
+                        try {
+                            console.log(rejection);
+                            // Display validation error message
+                            if (rejection.data.name == "ValidationError") {
+                                for (var err in rejection.data.errors) {
+                                    console.log(err);
+                                    var e = rejection.data.errors[err];
+                                    growl.error(e.message.replace('Path ', ''), {title: e.name});
+                                }
 
+                                // When Angular has session but, backend session is expired
+                            } else if (rejection.status == 401) {
+                                UserService.logout();
+                                $location.path('/login');
+
+                                // Some generic error from the backend
+                            } else if (rejection.data.error) {
+                                growl.error(rejection.data.error.message);
+                            }
+                        } catch (e) {
+                            var msg = "API server is unreachable. Please contact technical support!";
+                            growl.error(msg, {title: 'ServerError!', ttl: -1});
+                        }
+                        return $q.reject(rejection);
+                    }
+                };
+            }])
 })();

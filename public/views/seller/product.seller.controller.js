@@ -44,15 +44,11 @@ function fn($scope, $state, ProductService, growl, $rootScope, $location, Catego
             ProductService.create($scope.mdl.product).then(function (resp) {
                 growl.success('Item created successfully');
                 $scope.mdl.product = {is_active: false};
-            }, function (err) {
-                growl.error(err.message);
             })
         },
         update: function () {
             ProductService.update($state.params.id, $scope.mdl.product).then(function (resp) {
                 growl.success('Item update successfully');
-            }, function (err) {
-                growl.error(err.message);
             })
         },
         page: {
