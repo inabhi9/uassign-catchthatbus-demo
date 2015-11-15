@@ -1,3 +1,7 @@
+# Problem Statement
+
+Develop a web application which would let the user help connect buyer and seller through one portal.
+
 # Technology Stack
 
 This application is built on MEAN stack. 
@@ -11,6 +15,9 @@ This application is built on MEAN stack.
 ## Install Dependency
 1. Install npm modules: `npm install`
 2. Install bower dependencies `bower install`
+
+## Loading Sample Database
+1. mongorestore sampl
 
 ## Run
 1. Start up the server: `node server.js`
