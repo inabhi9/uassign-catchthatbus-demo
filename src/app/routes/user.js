@@ -28,7 +28,7 @@ module.exports = function (app, passport, prefix) {
         passport.authenticate('login', function (error, user, info) {
             if (error) {
                 error = {error: {message: error}};
-                return Helper.response(res, user, error, 401);
+                return Helper.response(res, user, error, 400);
             }
 
             req.logIn(user, function (err) {

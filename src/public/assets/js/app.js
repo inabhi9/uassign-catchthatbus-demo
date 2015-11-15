@@ -15,12 +15,14 @@
         .run(["$rootScope", function ($rootScope) {
             $rootScope.dateFormat = 'dd-MMMM-yyyy';
         }])
-        .config(['growlProvider', '$httpProvider', function (growlProvider, $httpProvider) {
+        .config(['growlProvider', '$httpProvider', '$locationProvider',
+            function (growlProvider, $httpProvider, $locationProvider) {
             growlProvider.onlyUniqueMessages(false);
             growlProvider.globalReversedOrder(true);
             growlProvider.globalTimeToLive({success: 5000, error: 5000, warning: 3000, info: 4000});
 
             $httpProvider.interceptors.push('errorInterceptor');
+                $locationProvider.html5Mode(true);
         }])
         .controller('AppController', ['$scope', '$rootScope', '$state', '$location', 'UserService',
             'CartService',
