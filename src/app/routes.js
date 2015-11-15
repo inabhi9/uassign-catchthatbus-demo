@@ -1,6 +1,8 @@
-UserRoute = require('./routes/user.js');
-CategoryRoute = require('./routes/category.js');
-ProductRoute = require('./routes/product.js');
+var UserRoute = require('./routes/user.js'),
+    CategoryRoute = require('./routes/category.js'),
+    ProductRoute = require('./routes/product.js'),
+    path = require('path');
+
 
 module.exports = function (app, passport) {
     var prefix = '/api/v1';
@@ -15,6 +17,6 @@ module.exports = function (app, passport) {
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function (req, res, next) {
-        res.sendfile('./public/index.html');
+        res.sendfile(path.join(__dirname, '../public/index.html'));
     });
 };
