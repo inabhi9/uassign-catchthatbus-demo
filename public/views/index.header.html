@@ -66,7 +66,7 @@
                             <li ng-if="user.isLoggedIn()">
                                 <a>Howdy, {{user.get().fullname}}</a>
                             </li>
-                            <li ng-if="user.isLoggedIn() && user.get().kind=='buyer'">
+                            <li ng-if="user.get().kind!='seller'">
                                 <a ui-sref="cart"><i
                                     class="fa fa-shopping-cart"></i> Cart ({{cart.getTotalCount()}})</a>
                             </li>
@@ -99,12 +99,12 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="index.html" class="active">Home</a></li>
+                            <li><a ui-sref="home" class="active">Home</a></li>
 
                             <li class="dropdown"><a href="#">About
                                 <i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="http://bit.ly/a9profile" target="_blank">Me</a>
+                                    <li><a href="http://bit.ly/a9profile" target="_blank">Author</a>
                                     </li>
                                     <li><a href="blog-single.html">This Demo</a></li>
                                 </ul>

@@ -857,7 +857,9 @@ h2.title {
 }
 
 .productinfo img {
-    width: 100%;
+    /*    width: 100%; */
+    width: auto;
+    max-height: 170px;
 }
 
 .productinfo {
