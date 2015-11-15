@@ -10,7 +10,7 @@ function fn($scope, $state, ProductService, growl, $rootScope, CartService) {
     //CartService.clear();
     console.log('itesm', CartService.getTotalCount());
     console.log('cart', CartService.getCart());
-    ProductService.find($state.params).then(function (resp) {
+    ProductService.findFromActive($state.params).then(function (resp) {
         $scope.mdl.products = resp.data.items;
         $scope.mdl.meta = resp.data.meta
     });
